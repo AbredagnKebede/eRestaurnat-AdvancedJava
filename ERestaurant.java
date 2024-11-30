@@ -6,6 +6,7 @@ public class ERestaurant {
         CustomerDAO customerDAO = new CustomerDAO();
         OrderDAO orderDAO = new OrderDAO();
         MenuDAO menuDAO = new MenuDAO();
+        AdminDAO adminDAO = new AdminDAO();
 
         System.out.println("Are you a customer or staff? Enter 1 for customer, 2 for staff:");
         int userType = scanner.nextInt();
@@ -33,6 +34,31 @@ public class ERestaurant {
             System.out.println("Your verification code: " + verificationCode);
 
             orderDAO.addOrder(1, foodType, quantity, totalPrice, verificationCode);
+        } else if (userType == 2) { // Admin
+            System.out.println("Enter your name:");
+            String adminName = scanner.next();
+            System.out.println("Enter your password:");
+            String adminPassword = scanner.next();
+
+            if (AdminDAO.verifyAdmin(adminName, adminPassword)) {
+                System.out.println("Login successful! Welcome, " + adminName + ".");
+                System.out.println("What would you like to do?");
+                System.out.println("1. View all orders");
+                System.out.println("2. View recent orders (last 30 minutes)");
+
+                int adminChoice = scanner.nextInt();
+                if (adminChoice == 1) {
+                    adminDAO.displayAllOrders();
+                } else if (adminChoice == 2) {
+                    adminDAO.displayRecentOrders();
+                } else {
+                    System.out.println("Invalid option.");
+                }
+            } else {
+                System.out.println("Invalid admin name or password.");
+            }
+        } else {
+            System.out.println("Invalid user type.");
         }
     }
 }
