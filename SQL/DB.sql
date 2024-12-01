@@ -7,6 +7,13 @@ CREATE TABLE Customers (
     address VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE Admins (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    sex ENUM('Male', 'Female') NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE Orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
