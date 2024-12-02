@@ -4,12 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdminDAO {
-    public static boolean verifyAdmin(String name, String password) {
-        String query = "SELECT * FROM Admins WHERE name = ? AND password = ?";
+    public static boolean verifyAdmin(String name, String sex, String password) {
+        String query = "SELECT * FROM Admins WHERE name = ? AND sex = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, name);
-            stmt.setString(2, password);
+            stmt.setString(2, sex);
+            stmt.setString(3, password);
 
             ResultSet rs = stmt.executeQuery();
             return rs.next(); // If a result exists, credentials are valid
@@ -62,5 +63,20 @@ public class AdminDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean updatePrice(String food_type, int price){
+        String query = "UPDATE menu SET price = ? WHERE food_type = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setString(1, food_type);
+            stmt.setInt(2, price);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
+            }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

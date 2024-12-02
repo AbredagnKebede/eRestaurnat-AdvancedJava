@@ -46,3 +46,6 @@ INSERT INTO Menu (food_type, price) VALUES
 ('chip_butty_with_egg', 70),
 ('chip_butty_with_soya', 80),
 ('chip_butty_with_Avocado', 90);
+INSERT INTO Admins(name, sex, password) VALUES
+('Abredagn', 'Male', 'bare@coat'),
+('Henok', 'Male', '1234');

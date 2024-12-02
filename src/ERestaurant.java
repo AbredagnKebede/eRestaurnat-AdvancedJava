@@ -37,20 +37,35 @@ public class ERestaurant {
             } else if (userType == 2) { // Admin
                 System.out.println("Enter your name:");
                 String adminName = scanner.next();
+                System.out.println("Enter your gender:");
+                String sex = scanner.next();
                 System.out.println("Enter your password:");
                 String adminPassword = scanner.next();
 
-                if (AdminDAO.verifyAdmin(adminName, adminPassword)) {
+                if (AdminDAO.verifyAdmin(adminName, sex, adminPassword)) {
                     System.out.println("Login successful! Welcome, " + adminName + ".");
                     System.out.println("What would you like to do?");
                     System.out.println("1. View all orders");
                     System.out.println("2. View recent orders (last 30 minutes)");
+                    System.out.println("3. Update price");
+                    System.out.println("4. Add food type to menu list");
 
                     int adminChoice = scanner.nextInt();
                     if (adminChoice == 1) {
                         adminDAO.displayAllOrders();
                     } else if (adminChoice == 2) {
                         adminDAO.displayRecentOrders();
+                    } else if (adminChoice == 3){
+                        System.out.println("Enter food type to be updated:");
+                        String food = scanner.next();
+                        System.out.println("Enter updagted price:");
+                        int updated_price = scanner.nextInt();
+                        if(adminDAO.updatePrice(food, updated_price)){
+                            System.out.println("Price updated successfully!");
+                        }
+                        else{
+                            System.out.println("Invalid food type!");
+                        }
                     } else {
                         System.out.println("Invalid option.");
                     }
