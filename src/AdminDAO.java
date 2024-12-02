@@ -63,4 +63,36 @@ public class AdminDAO {
             e.printStackTrace();
         }
     }
+
+     // Method to add a new food item to the menu
+    public void addFoodToMenu(String foodType, double price) {
+        String query = "INSERT INTO Menu (food_type, price) VALUES (?, ?)";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, foodType);
+            stmt.setDouble(2, price);
+            stmt.executeUpdate();
+            System.out.println("Food item added successfully: " + foodType + " - " + price + " birr");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to update the price of an existing food item
+    public void updateFoodPrice(String foodType, double newPrice) {
+        String query = "UPDATE Menu SET price = ? WHERE food_type = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setDouble(1, newPrice);
+            stmt.setString(2, foodType);
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Price updated successfully for: " + foodType + " - New Price: " + newPrice + " birr");
+            } else {
+                System.out.println("Food item not found: " + foodType);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
