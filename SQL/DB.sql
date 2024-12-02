@@ -1,19 +1,16 @@
 CREATE DATABASE e_restaurant;
 USE e_restaurant;
-
+CREATE TABLE Admins (
+    admin_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    sex ENUM('Male', 'Female', 'Other') NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
 CREATE TABLE Customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     address VARCHAR(255) NOT NULL
 );
-
-CREATE TABLE Admins (
-    admin_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    sex ENUM('Male', 'Female') NOT NULL,
-    password VARCHAR(255) NOT NULL
-);
-
 CREATE TABLE Orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
@@ -24,12 +21,10 @@ CREATE TABLE Orders (
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
-
 CREATE TABLE Menu (
     food_type VARCHAR(100) PRIMARY KEY,
     price DECIMAL(10, 2) NOT NULL
 );
-
 INSERT INTO Menu (food_type, price) VALUES
 ('Margherita_pizza', 100),
 ('Pepperoni_pizza', 250),
@@ -46,6 +41,9 @@ INSERT INTO Menu (food_type, price) VALUES
 ('chip_butty_with_egg', 70),
 ('chip_butty_with_soya', 80),
 ('chip_butty_with_Avocado', 90);
-INSERT INTO Admins(name, sex, password) VALUES
-('Abredagn', 'Male', 'bare@coat'),
-('Henok', 'Male', '1234');
+INSERT INTO Admins (name, sex, password) VALUES
+('AdminUser', 'Male', 'admin123');
+
+SHOW GRANTS FOR 'root'@'localhost';
+GRANT ALL PRIVILEGES ON e_restaurant.* TO 'root'@'localhost';
+FLUSH PRIVILEGES;

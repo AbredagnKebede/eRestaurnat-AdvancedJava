@@ -1,0 +1,22 @@
+eRestaurantSystem/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── servlets/
+│   │   │   │   ├── LoginServlet.java
+│   │   │   │   ├── CustomerServlet.java
+│   │   │   │   └── AdminServlet.java
+│   │   │   ├── AdminDAO.java
+│   │   │   ├── CustomerDAO.java
+│   │   │   ├── OrderDAO.java
+│   │   │   └── DatabaseConnection.java
+│   │   ├── webapp/
+│   │       ├── index.html
+│   │       ├── customer.html
+│   │       ├── admin.html
+│   │       ├── css/
+│   │       │   └── styles.css
+│   │       └── js/
+│   │           └── scripts.js
+├── lib/ (contains MySQL Connector JAR)
+└── pom.xml (if using Maven)
