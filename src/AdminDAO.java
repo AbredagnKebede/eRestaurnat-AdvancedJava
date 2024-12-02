@@ -7,7 +7,7 @@ public class AdminDAO {
     public static boolean verifyAdmin(String name, String password) {
         String query = "SELECT * FROM Admins WHERE name = ? AND password = ?";
         try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
+            PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, name);
             stmt.setString(2, password);
 
