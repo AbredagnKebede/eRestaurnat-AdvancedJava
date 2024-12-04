@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>e-Restaurant Login</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to e-Restaurant</h1>
+        <form id="loginForm" action="LoginServlet" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="userType">Login as:</label>
+            <select id="userType" name="userType">
+                <option value="customer">Customer</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
