@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDAO {
     public boolean verifyAdmin(String name, String password) {
@@ -43,27 +45,27 @@ public class AdminDAO {
         }
     }
 
-    public void displayAllOrders() {
-        String query = "SELECT o.order_id, c.name, c.address, o.food_type, o.quantity, o.total_price, o.order_date " +
-                       "FROM Orders o JOIN Customers c ON o.customer_id = c.customer_id";
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query);
-             ResultSet rs = stmt.executeQuery()) {
-            System.out.println("All Orders:");
-            while (rs.next()) {
-                System.out.println("Order ID: " + rs.getInt("order_id"));
-                System.out.println("Customer Name: " + rs.getString("name"));
-                System.out.println("Customer Address: " + rs.getString("address"));
-                System.out.println("Food Type: " + rs.getString("food_type"));
-                System.out.println("Quantity: " + rs.getInt("quantity"));
-                System.out.println("Total Price: " + rs.getDouble("total_price"));
-                System.out.println("Order Date: " + rs.getTimestamp("order_date"));
-                System.out.println("-------------------------------------");
+    public List<String> displayAllOrders() {
+        List<String> orders = new ArrayList<>();
+        String query = "SELECT * FROM orders"; // Adjust table/column names based on your database schema
+        
+        try (Connection connection = DatabaseConnection.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery()) {
+            
+            while (resultSet.next()) {
+                String orderDetails = "Order ID: " + resultSet.getInt("order_id") +
+                                    ", Customer ID: " + resultSet.getInt("customer_id") +
+                                    ", Total Amount: " + resultSet.getDouble("total_amount") +
+                                    ", Date: " + resultSet.getTimestamp("order_date");
+                orders.add(orderDetails);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return orders;
     }
+
 
      // Method to add a new food item to the menu
     public void addFoodToMenu(String foodType, double price) {

@@ -2,7 +2,10 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "mysql-connector-j-9.1.0.jar",
-        "c:\\Users\\hana\\Downloads\\mysql-connector-j-9.1.0\\mysql-connector-j-9.1.0\\mysql-connector-j-9.1.0.jar"
+        "c:\\Users\\hana\\Downloads\\mysql-connector-j-9.1.0\\mysql-connector-j-9.1.0\\mysql-connector-j-9.1.0.jar",
+        "eRestaurantSystem/tomcat-servlet-api-9.0.17-sources.jar",
+        "c:\\Users\\hana\\Downloads\\tomcat-servlet-api-9.0.17-sources.jar",
+        "c:\\Users\\hana\\Downloads\\tomcat-servlet-api-9.0.17.jar"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }
