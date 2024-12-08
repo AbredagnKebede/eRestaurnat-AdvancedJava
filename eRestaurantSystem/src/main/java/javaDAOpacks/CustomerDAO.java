@@ -2,7 +2,6 @@ package javaDAOpacks;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 public class CustomerDAO {
     public void addCustomer(String name, String address) {
         String query = "INSERT INTO Customers (name, address) VALUES (?, ?)";

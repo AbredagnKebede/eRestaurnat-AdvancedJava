@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class AdminDAO {
     public boolean verifyAdmin(String name, String password) {
         String query = "SELECT * FROM Admins WHERE name = ? AND password = ?";
